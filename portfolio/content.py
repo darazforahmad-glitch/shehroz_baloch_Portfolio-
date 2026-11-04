@@ -7,14 +7,13 @@ Every word on the website comes from this file. There is no database and no
 admin panel -- change a value here, reload the page, and the site updates.
 
 STATUS
-  Filled in: name, headline, location, the Cloaked role and what you did
-  there, skills, selected work, and your degree.
+  Complete and live. Name, headline, location, contact email, the Cloaked
+  role and its delivery, skills, selected work, and the degree are all real.
 
-  Still needed -- search this file for "TODO":
-    * contact email
-    * start date at Cloaked  (EXPERIENCE -> "start")
-    * graduation years       (EDUCATION)
-    * any previous roles, certifications, languages
+  Optional additions, marked TODO below:
+    * earlier roles, certifications, languages
+    * a profile photo at static/img/profile.jpg
+    * stat tiles and the "open to opportunities" badge, both off by default
 
 Sections disappear by themselves when left empty, so the site never shows a
 half-finished block. PROJECTS = [] removes the Work section and its nav link.
@@ -52,7 +51,7 @@ PROFILE = {
 }
 
 CONTACT = {
-    "email": "<TODO: your email address>",
+    "email": "shhrzblchh@gmail.com",
     "phone": "",
     "linkedin": "https://www.linkedin.com/in/shehroz-baloch-92910141b/",
     "github": "",
@@ -233,12 +232,12 @@ PROJECTS = [
 # ---------------------------------------------------------------------------
 EDUCATION = [
     {
-        "degree": "BS in Communication and Media Studies",
+        "degree": "Bachelor of Science, Communication and Media Studies",
         "institution": "International Islamic University, Islamabad",
         "location": "Islamabad, Pakistan",
-        "start": "<TODO: YYYY>",
-        "end": "<TODO: YYYY>",
-        "detail": "",
+        "start": "Feb 2013",
+        "end": "Jan 2017",
+        "detail": "Grade: A — Gold Medalist",
     },
 ]
 
