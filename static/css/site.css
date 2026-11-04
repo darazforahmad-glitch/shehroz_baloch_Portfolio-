@@ -60,6 +60,8 @@ body {
   font-family: var(--font);
   font-size: 16px;
   line-height: 1.65;
+  /* Roughly one extra space between words, inherited by every element. */
+  word-spacing: 0.22em;
   color: var(--text);
   background-color: var(--wall-deep);
   /* The lamp: one warm pool of light in the upper right, falling off into
@@ -426,7 +428,7 @@ h1, h2, h3, h4 {
   border-block: 1px solid var(--line);
 }
 
-.sechead { max-width: 60ch; margin-bottom: clamp(42px, 6vw, 72px); }
+.sechead { max-width: 60ch; margin-bottom: clamp(32px, 3.2vw, 40px); }
 .sechead__title {
   font-size: clamp(1.9rem, 4.2vw, 2.9rem);
   text-shadow: -1px 2px 0 rgba(0, 0, 0, 0.22);
