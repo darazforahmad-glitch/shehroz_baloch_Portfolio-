@@ -1,0 +1,425 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block content %}
+
+{# ---------------------------------------------------------------- HERO #}
+<section class="hero" id="top">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="hero__grid-bg" aria-hidden="true"></div>
+
+  <div class="shell hero__inner">
+    <div class="hero__copy">
+      {% if profile.availability %}
+      <p class="pill pill--live reveal">
+        <span class="pill__dot" aria-hidden="true"></span>{{ profile.availability }}
+      </p>
+      {% endif %}
+
+      <h1 class="hero__name reveal" style="--d:60ms">{{ profile.name }}</h1>
+
+      <p class="hero__headline reveal" style="--d:120ms">{{ profile.headline }}</p>
+
+      {% if profile.focus_areas %}
+      <p class="hero__rotator reveal" style="--d:180ms">
+        <span class="hero__rotator-label">Focused on</span>
+        <span class="hero__rotator-words"
+              id="rotator"
+              data-words="{% for word in profile.focus_areas %}{{ word }}{% if not forloop.last %}|{% endif %}{% endfor %}">{{ profile.focus_areas.0 }}</span>
+      </p>
+      {% endif %}
+
+      <p class="hero__tagline reveal" style="--d:240ms">{{ profile.tagline }}</p>
+
+      <div class="hero__actions reveal" style="--d:300ms">
+        <a class="btn btn--primary" href="#contact">
+          {{ site.nav_cta }}<svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+        </a>
+        {% if has_resume %}
+        <a class="btn btn--ghost" href="{% static resume_path %}" download>
+          <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>Download CV
+        </a>
+        {% else %}
+        <a class="btn btn--ghost" href="{% url 'resume' %}">
+          <svg class="icon" aria-hidden="true"><use href="#i-external"></use></svg>View résumé
+        </a>
+        {% endif %}
+      </div>
+
+      <ul class="hero__meta reveal" style="--d:360ms">
+        {% if profile.location %}
+        <li><svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>{{ profile.location }}</li>
+        {% endif %}
+        {% if contact.email %}
+        <li><a href="mailto:{{ contact.email }}"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>{{ contact.email }}</a></li>
+        {% endif %}
+      </ul>
+
+      {% if social_links %}
+      <ul class="hero__social reveal" style="--d:420ms">
+        {% for link in social_links %}
+        <li>
+          <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ link.name }}">
+            <svg class="icon" aria-hidden="true"><use href="#i-{{ link.icon }}"></use></svg>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+
+    <div class="hero__aside reveal" style="--d:220ms">
+      <div class="portrait">
+        <div class="portrait__ring" aria-hidden="true"></div>
+        {% if has_photo %}
+          <img class="portrait__img" src="{% static photo_path %}" alt="Portrait of {{ profile.name }}" width="420" height="500" fetchpriority="high">
+        {% else %}
+          <div class="portrait__mono" role="img" aria-label="{{ profile.name }}">{{ monogram }}</div>
+        {% endif %}
+      </div>
+
+      {% if stats %}
+      <ul class="statrow">
+        {% for stat in stats %}
+        <li class="stat">
+          <span class="stat__value">{{ stat.value }}</span>
+          <span class="stat__label">{{ stat.label }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+
+  <a class="hero__scroll" href="#about" aria-label="Scroll to about section">
+    <svg class="icon" aria-hidden="true"><use href="#i-down"></use></svg>
+  </a>
+</section>
+
+{# --------------------------------------------------------------- ABOUT #}
+<section class="section" id="about">
+  <div class="shell">
+    <header class="sechead reveal">
+      <p class="sechead__eyebrow">01 — Introduction</p>
+      <h2 class="sechead__title">{{ about.heading }}</h2>
+    </header>
+
+    <div class="about">
+      <div class="about__main reveal">
+        {% if about.lead %}<p class="about__lead">{{ about.lead }}</p>{% endif %}
+        {% for para in about.paragraphs %}<p class="about__para">{{ para }}</p>{% endfor %}
+      </div>
+
+      <aside class="about__side reveal" style="--d:100ms">
+        {% if about.highlights %}
+        <div class="card card--soft">
+          <h3 class="card__title">What I bring</h3>
+          <ul class="ticklist">
+            {% for item in about.highlights %}
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span>{{ item }}</span></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if languages %}
+        <div class="card card--soft">
+          <h3 class="card__title">Languages</h3>
+          <ul class="deflist">
+            {% for lang in languages %}
+            <li><span>{{ lang.name }}</span><span class="deflist__v">{{ lang.level }}</span></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+</section>
+
+{# ---------------------------------------------------------- EXPERIENCE #}
+{% if experience %}
+<section class="section section--alt" id="experience">
+  <div class="shell">
+    <header class="sechead reveal">
+      <p class="sechead__eyebrow">02 — Career</p>
+      <h2 class="sechead__title">Experience</h2>
+      <p class="sechead__sub">Roles, responsibilities and the results behind them.</p>
+    </header>
+
+    <ol class="timeline">
+      {% for job in experience %}
+      <li class="timeline__item reveal" style="--d:{{ forloop.counter0 }}00ms">
+        <span class="timeline__node" aria-hidden="true"></span>
+
+        <div class="timeline__card">
+          <div class="timeline__top">
+            <div>
+              <h3 class="timeline__role">{{ job.role }}</h3>
+              <p class="timeline__org">
+                {% if job.company_url %}
+                  <a href="{{ job.company_url }}" target="_blank" rel="noopener noreferrer">{{ job.company }}<svg class="icon icon--xs" aria-hidden="true"><use href="#i-external"></use></svg></a>
+                {% else %}{{ job.company }}{% endif %}
+                {% if job.employment_type %}<span class="dot" aria-hidden="true">·</span>{{ job.employment_type }}{% endif %}
+              </p>
+            </div>
+            <div class="timeline__when">
+              <span class="chip chip--date">{{ job.start }} — {{ job.end }}</span>
+              {% if job.location %}<span class="timeline__place"><svg class="icon icon--xs" aria-hidden="true"><use href="#i-pin"></use></svg>{{ job.location }}</span>{% endif %}
+            </div>
+          </div>
+
+          {% if job.summary %}<p class="timeline__summary">{{ job.summary }}</p>{% endif %}
+
+          {% if job.achievements %}
+          <ul class="bullets">
+            {% for point in job.achievements %}<li>{{ point }}</li>{% endfor %}
+          </ul>
+          {% endif %}
+
+          {% if job.skills %}
+          <ul class="chips">
+            {% for skill in job.skills %}<li class="chip">{{ skill }}</li>{% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+{% endif %}
+
+{# -------------------------------------------------------------- SKILLS #}
+{% if skill_groups %}
+<section class="section" id="skills">
+  <div class="shell">
+    <header class="sechead reveal">
+      <p class="sechead__eyebrow">03 — Capabilities</p>
+      <h2 class="sechead__title">Skills &amp; expertise</h2>
+    </header>
+
+    <div class="skillgrid">
+      {% for group in skill_groups %}
+      <article class="card card--skill reveal" style="--d:{{ forloop.counter0 }}00ms">
+        <span class="card__icon" aria-hidden="true">
+          <svg class="icon"><use href="#i-{{ group.icon|default:'spark' }}"></use></svg>
+        </span>
+        <h3 class="card__title">{{ group.title }}</h3>
+        <ul class="chips">
+          {% for skill in group.skills %}<li class="chip">{{ skill }}</li>{% endfor %}
+        </ul>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ---------------------------------------------------------------- WORK #}
+{% if projects %}
+<section class="section section--alt" id="work">
+  <div class="shell">
+    <header class="sechead reveal">
+      <p class="sechead__eyebrow">04 — Portfolio</p>
+      <h2 class="sechead__title">Selected work</h2>
+      <p class="sechead__sub">A few projects that show how I work and what I deliver.</p>
+    </header>
+
+    <div class="workgrid">
+      {% for project in projects %}
+      <article class="card card--work reveal{% if project.featured %} card--wide{% endif %}" style="--d:{{ forloop.counter0 }}00ms">
+        <div class="card--work__head">
+          {% if project.category %}<p class="card__eyebrow">{{ project.category }}</p>{% endif %}
+          {% if project.period %}<span class="chip chip--date">{{ project.period }}</span>{% endif %}
+        </div>
+
+        <h3 class="card__title card__title--lg">{{ project.title }}</h3>
+        <p class="card__body">{{ project.description }}</p>
+
+        {% if project.tags %}
+        <ul class="chips">
+          {% for tag in project.tags %}<li class="chip">{{ tag }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if project.url %}
+        <a class="linkout" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
+          {{ project.url_label|default:"View project" }}<svg class="icon icon--xs" aria-hidden="true"><use href="#i-arrow"></use></svg>
+        </a>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ----------------------------------------------------- EDUCATION/CERTS #}
+<section class="section" id="education">
+  <div class="shell">
+    <header class="sechead reveal">
+      <p class="sechead__eyebrow">05 — Background</p>
+      <h2 class="sechead__title">Education &amp; certifications</h2>
+    </header>
+
+    <div class="twocol">
+      {% if education %}
+      <div class="reveal">
+        <h3 class="colhead"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg>Education</h3>
+        <ul class="stacklist">
+          {% for item in education %}
+          <li class="card card--soft">
+            <h4 class="card__title">{{ item.degree }}</h4>
+            <p class="card__meta">{{ item.institution }}{% if item.location %}<span class="dot" aria-hidden="true">·</span>{{ item.location }}{% endif %}</p>
+            <span class="chip chip--date">{{ item.start }} — {{ item.end }}</span>
+            {% if item.detail %}<p class="card__body">{{ item.detail }}</p>{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      {% if certifications %}
+      <div class="reveal" style="--d:100ms">
+        <h3 class="colhead"><svg class="icon" aria-hidden="true"><use href="#i-badge"></use></svg>Certifications</h3>
+        <ul class="stacklist">
+          {% for cert in certifications %}
+          <li class="card card--soft">
+            <h4 class="card__title">
+              {% if cert.url %}<a href="{{ cert.url }}" target="_blank" rel="noopener noreferrer">{{ cert.name }}<svg class="icon icon--xs" aria-hidden="true"><use href="#i-external"></use></svg></a>
+              {% else %}{{ cert.name }}{% endif %}
+            </h4>
+            <p class="card__meta">{{ cert.issuer }}{% if cert.year %}<span class="dot" aria-hidden="true">·</span>{{ cert.year }}{% endif %}</p>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{# -------------------------------------------------------- TESTIMONIALS #}
+{% if testimonials %}
+<section class="section section--alt" id="testimonials">
+  <div class="shell">
+    <header class="sechead reveal">
+      <p class="sechead__eyebrow">06 — Recommendations</p>
+      <h2 class="sechead__title">What people say</h2>
+    </header>
+    <div class="quotegrid">
+      {% for item in testimonials %}
+      <figure class="card card--quote reveal" style="--d:{{ forloop.counter0 }}00ms">
+        <svg class="card__quotemark icon" aria-hidden="true"><use href="#i-quote"></use></svg>
+        <blockquote>{{ item.quote }}</blockquote>
+        <figcaption><strong>{{ item.author }}</strong><span>{{ item.role }}</span></figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ------------------------------------------------------------- CONTACT #}
+<section class="section section--contact" id="contact">
+  <div class="shell">
+    <div class="contact">
+      <div class="contact__intro reveal">
+        <p class="sechead__eyebrow">07 — Contact</p>
+        <h2 class="sechead__title">{{ site.contact_heading }}</h2>
+        <p class="contact__blurb">{{ site.contact_blurb }}</p>
+
+        <ul class="contact__list">
+          {% if contact.email %}
+          <li>
+            <span class="contact__ico" aria-hidden="true"><svg class="icon"><use href="#i-mail"></use></svg></span>
+            <span><span class="contact__k">Email</span><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></span>
+          </li>
+          {% endif %}
+          {% if contact.phone %}
+          <li>
+            <span class="contact__ico" aria-hidden="true"><svg class="icon"><use href="#i-phone"></use></svg></span>
+            <span><span class="contact__k">Phone</span><a href="tel:{{ contact.phone|cut:' ' }}">{{ contact.phone }}</a></span>
+          </li>
+          {% endif %}
+          {% if profile.location %}
+          <li>
+            <span class="contact__ico" aria-hidden="true"><svg class="icon"><use href="#i-pin"></use></svg></span>
+            <span><span class="contact__k">Location</span>{{ profile.location }}</span>
+          </li>
+          {% endif %}
+        </ul>
+
+        {% if social_links %}
+        <ul class="hero__social">
+          {% for link in social_links %}
+          <li><a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ link.name }}"><svg class="icon" aria-hidden="true"><use href="#i-{{ link.icon }}"></use></svg></a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+
+      <div class="contact__formwrap reveal" style="--d:120ms">
+        {% if contact_sent or request.GET.sent %}
+        <div class="notice notice--ok" role="status">
+          <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+          <div>
+            <strong>Message sent.</strong>
+            <p>Thanks for reaching out — I'll reply as soon as I can.</p>
+          </div>
+        </div>
+        {% endif %}
+
+        <form class="form" method="post" action="{% url 'contact' %}" novalidate>
+          {% csrf_token %}
+
+          {% if form.non_field_errors %}
+          <div class="notice notice--err" role="alert">
+            <div>{% for error in form.non_field_errors %}<p>{{ error }}</p>{% endfor %}</div>
+          </div>
+          {% endif %}
+
+          <div class="form__row">
+            <div class="field">
+              <label for="{{ form.name.id_for_label }}">Name <span aria-hidden="true">*</span></label>
+              {{ form.name }}
+              {% for error in form.name.errors %}<p class="field__err">{{ error }}</p>{% endfor %}
+            </div>
+            <div class="field">
+              <label for="{{ form.email.id_for_label }}">Email <span aria-hidden="true">*</span></label>
+              {{ form.email }}
+              {% for error in form.email.errors %}<p class="field__err">{{ error }}</p>{% endfor %}
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="{{ form.subject.id_for_label }}">Subject</label>
+            {{ form.subject }}
+            {% for error in form.subject.errors %}<p class="field__err">{{ error }}</p>{% endfor %}
+          </div>
+
+          <div class="field">
+            <label for="{{ form.message.id_for_label }}">Message <span aria-hidden="true">*</span></label>
+            {{ form.message }}
+            {% for error in form.message.errors %}<p class="field__err">{{ error }}</p>{% endfor %}
+          </div>
+
+          {# Honeypot — hidden from people, irresistible to bots. #}
+          <div class="hp" aria-hidden="true">{{ form.company_website }}</div>
+
+          <button class="btn btn--primary btn--block" type="submit">
+            Send message<svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+          </button>
+
+          <p class="form__fine">
+            Prefer email? Write to
+            {% if contact.email %}<a href="mailto:{{ contact.email }}">{{ contact.email }}</a>{% else %}the address above{% endif %}.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

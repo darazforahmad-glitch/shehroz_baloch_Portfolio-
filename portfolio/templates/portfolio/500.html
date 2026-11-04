@@ -1,0 +1,16 @@
+{% extends "portfolio/base.html" %}
+{% block title %}Something went wrong — {{ profile.name }}{% endblock %}
+{% block description %}An unexpected error occurred.{% endblock %}
+
+{% block content %}
+<section class="shell oops">
+  <div>
+    <p class="sechead__eyebrow">Error 500</p>
+    <h1 class="oops__code">500</h1>
+    <p>Something went wrong on my end. Please try again in a moment.</p>
+    <a class="btn btn--primary" href="{% url 'home' %}">
+      Back to the homepage<svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+    </a>
+  </div>
+</section>
+{% endblock %}

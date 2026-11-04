@@ -1,0 +1,105 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ profile.name }} — {{ site.title_suffix }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{{ profile.name }} — {{ profile.headline }}. {{ profile.tagline }}{% endblock %}">
+<meta name="author" content="{{ profile.name }}">
+<meta name="theme-color" content="#1c1b19">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ profile.name }} — {{ profile.headline }}">
+<meta property="og:description" content="{{ profile.tagline }}">
+{% if has_photo %}<meta property="og:image" content="{% static photo_path %}">{% endif %}
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/site.css' %}">
+{% block head_extra %}{% endblock %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ profile.name|escapejs }}",
+  "jobTitle": "{{ profile.headline|escapejs }}",
+  "description": "{{ profile.tagline|escapejs }}",
+  "address": {"@type": "PostalAddress", "addressLocality": "{{ profile.location|escapejs }}"}
+  {% if contact.email %}, "email": "{{ contact.email|escapejs }}"{% endif %}
+  {% if social_links %}, "sameAs": [{% for link in social_links %}"{{ link.url|escapejs }}"{% if not forloop.last %}, {% endif %}{% endfor %}]{% endif %}
+}
+</script>
+</head>
+<body class="no-js">
+<script>document.body.classList.remove('no-js');</script>
+{% include "portfolio/partials/icons.html" %}
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+{% block chrome %}
+<header class="nav" id="nav">
+  <div class="shell nav__inner">
+    <a class="nav__brand" href="{% url 'home' %}">
+      <span class="nav__mark" aria-hidden="true">{{ monogram }}</span>
+      <span class="nav__brandtext">{{ site.brand }}</span>
+    </a>
+
+    <nav class="nav__links" id="nav-links" aria-label="Sections">
+      {% for item in nav_items %}
+        <a href="{% url 'home' %}#{{ item.anchor }}" data-navlink="{{ item.anchor }}">{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn btn--sm btn--primary nav__cta" href="{% url 'home' %}#contact">{{ site.nav_cta }}</a>
+      <button class="iconbtn nav__burger" id="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+      </button>
+    </div>
+  </div>
+  <div class="nav__progress" id="nav-progress" aria-hidden="true"></div>
+</header>
+{% endblock %}
+
+<main id="main">
+  {% block content %}{% endblock %}
+</main>
+
+{% block footer %}
+<footer class="footer">
+  <div class="shell footer__inner">
+    <div class="footer__brand">
+      <span class="nav__mark" aria-hidden="true">{{ monogram }}</span>
+      <div>
+        <p class="footer__name">{{ profile.name }}</p>
+        {% if profile.location %}<p class="footer__meta">{{ profile.location }}</p>{% endif %}
+      </div>
+    </div>
+
+    {% if social_links %}
+    <ul class="footer__social">
+      {% for link in social_links %}
+      <li>
+        <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ link.name }}">
+          <svg class="icon" aria-hidden="true"><use href="#i-{{ link.icon }}"></use></svg>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <p class="footer__note">
+      © <span id="year">{% now "Y" %}</span> {{ profile.name }}. {{ site.footer_note }}
+    </p>
+  </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}<script src="{% static 'js/site.js' %}" defer></script>{% endblock %}
+</body>
+</html>

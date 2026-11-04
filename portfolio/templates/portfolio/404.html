@@ -1,0 +1,16 @@
+{% extends "portfolio/base.html" %}
+{% block title %}Page not found — {{ profile.name }}{% endblock %}
+{% block description %}The page you were looking for does not exist.{% endblock %}
+
+{% block content %}
+<section class="shell oops">
+  <div>
+    <p class="sechead__eyebrow">Error 404</p>
+    <h1 class="oops__code">404</h1>
+    <p>That page isn't here. It may have been moved, or the link might have a typo in it.</p>
+    <a class="btn btn--primary" href="{% url 'home' %}">
+      Back to the homepage<svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+    </a>
+  </div>
+</section>
+{% endblock %}

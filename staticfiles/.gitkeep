@@ -1,0 +1,3 @@
+# Kept so WhiteNoise does not warn about a missing STATIC_ROOT on cold starts.
+# Assets are served straight from the finders (WHITENOISE_USE_FINDERS), so
+# `collectstatic` is optional -- run it only if you move to a CDN.

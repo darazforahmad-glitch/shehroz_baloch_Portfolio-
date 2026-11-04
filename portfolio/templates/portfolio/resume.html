@@ -1,0 +1,114 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block title %}Résumé — {{ profile.name }}{% endblock %}
+{% block description %}The résumé of {{ profile.name }}, {{ profile.headline }}.{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="shell" style="max-width:860px">
+
+    <header class="sechead reveal">
+      <p class="sechead__eyebrow">Résumé</p>
+      <h2 class="sechead__title">{{ profile.name }}</h2>
+      <p class="sechead__sub">{{ profile.headline }}</p>
+      <ul class="hero__meta" style="margin-top:16px">
+        {% if profile.location %}<li><svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>{{ profile.location }}</li>{% endif %}
+        {% if contact.email %}<li><a href="mailto:{{ contact.email }}"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>{{ contact.email }}</a></li>{% endif %}
+        {% if contact.phone %}<li><a href="tel:{{ contact.phone|cut:' ' }}"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>{{ contact.phone }}</a></li>{% endif %}
+      </ul>
+      <div class="hero__actions" style="margin-top:24px">
+        {% if has_resume %}
+        <a class="btn btn--primary" href="{% static resume_path %}" download>
+          <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>Download PDF
+        </a>
+        {% endif %}
+        <button class="btn btn--ghost" type="button" onclick="window.print()">Print this page</button>
+        <a class="btn btn--ghost" href="{% url 'home' %}">Back to portfolio</a>
+      </div>
+    </header>
+
+    {% if about.paragraphs %}
+    <div class="reveal" style="margin-bottom:44px">
+      <h3 class="colhead">Profile</h3>
+      {% if about.lead %}<p class="about__lead">{{ about.lead }}</p>{% endif %}
+      {% for para in about.paragraphs %}<p class="about__para">{{ para }}</p>{% endfor %}
+    </div>
+    {% endif %}
+
+    {% if experience %}
+    <div class="reveal" style="margin-bottom:44px">
+      <h3 class="colhead"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg>Experience</h3>
+      <ul class="stacklist">
+        {% for job in experience %}
+        <li class="card card--soft">
+          <div class="timeline__top" style="margin-bottom:10px">
+            <div>
+              <h4 class="card__title" style="margin-bottom:4px">{{ job.role }}</h4>
+              <p class="card__meta" style="margin:0">{{ job.company }}{% if job.location %}<span class="dot" aria-hidden="true">·</span>{{ job.location }}{% endif %}</p>
+            </div>
+            <span class="chip chip--date">{{ job.start }} — {{ job.end }}</span>
+          </div>
+          {% if job.summary %}<p class="card__body" style="margin-bottom:10px">{{ job.summary }}</p>{% endif %}
+          {% if job.achievements %}<ul class="bullets" style="margin-bottom:0">{% for point in job.achievements %}<li>{{ point }}</li>{% endfor %}</ul>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {% if skill_groups %}
+    <div class="reveal" style="margin-bottom:44px">
+      <h3 class="colhead"><svg class="icon" aria-hidden="true"><use href="#i-spark"></use></svg>Skills</h3>
+      <ul class="stacklist">
+        {% for group in skill_groups %}
+        <li class="card card--soft">
+          <h4 class="card__title">{{ group.title }}</h4>
+          <ul class="chips">{% for skill in group.skills %}<li class="chip">{{ skill }}</li>{% endfor %}</ul>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <div class="twocol reveal">
+      {% if education %}
+      <div>
+        <h3 class="colhead"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg>Education</h3>
+        <ul class="stacklist">
+          {% for item in education %}
+          <li class="card card--soft">
+            <h4 class="card__title">{{ item.degree }}</h4>
+            <p class="card__meta">{{ item.institution }}</p>
+            <span class="chip chip--date">{{ item.start }} — {{ item.end }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      {% if certifications %}
+      <div>
+        <h3 class="colhead"><svg class="icon" aria-hidden="true"><use href="#i-badge"></use></svg>Certifications</h3>
+        <ul class="stacklist">
+          {% for cert in certifications %}
+          <li class="card card--soft">
+            <h4 class="card__title">{{ cert.name }}</h4>
+            <p class="card__meta" style="margin:0">{{ cert.issuer }}{% if cert.year %}<span class="dot" aria-hidden="true">·</span>{{ cert.year }}{% endif %}</p>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if languages %}
+    <div class="reveal" style="margin-top:44px">
+      <h3 class="colhead"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>Languages</h3>
+      <ul class="chips">{% for lang in languages %}<li class="chip">{{ lang.name }} — {{ lang.level }}</li>{% endfor %}</ul>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}
