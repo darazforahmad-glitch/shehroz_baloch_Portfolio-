@@ -49,7 +49,7 @@ PROFILE = {
 
 CONTACT = {
     "email": "shhrzblchh@gmail.com",
-    "phone": "",
+    "phone": "+92 321 8195351",
     "linkedin": "https://www.linkedin.com/in/shehroz-baloch-92910141b/",
     "github": "",
     "twitter": "",
@@ -130,7 +130,102 @@ EXPERIENCE = [
             "Snowflake",
         ],
     },
-    # TODO: add earlier roles by copying the block above. Newest first.
+    {
+        "role": "Amazon FBA Seller",
+        "company": "ZedTac LLC",
+        "company_url": "",
+        "location": "Lahore, Punjab, Pakistan",
+        "start": "Oct 2024",
+        "end": "Present",
+        "employment_type": "",
+        "summary": "End-to-end Amazon marketplace operations, from sourcing to account health.",
+        "achievements": [
+            "Streamlined the order fulfilment process, reducing shipping "
+            "times and ensuring timely deliveries for customers.",
+            "Conducted product research to identify profitable niches, "
+            "resulting in successful product launches.",
+            "Increased product sales by optimising Amazon listings with "
+            "keyword research and market analysis.",
+            "Monitored account health to maintain good standing with "
+            "Amazon, improving seller metrics.",
+        ],
+        "skills": [
+            "Amazon FBA",
+            "Listing Optimisation",
+            "Keyword Research",
+            "Market Analysis",
+            "Order Fulfilment",
+        ],
+    },
+    {
+        "role": "Virtual Assistant",
+        "company": "Ecom Enablers",
+        "company_url": "",
+        "location": "Lahore, Punjab, Pakistan",
+        "start": "May 2022",
+        "end": "Oct 2023",
+        "employment_type": "",
+        "summary": "Executive support and front-line customer service across email, phone and live chat.",
+        "achievements": [
+            "Monitored email, organised the inbox and prioritised messages "
+            "for the supervisor.",
+            "Answered and screened calls to provide information, schedule "
+            "appointments and take detailed messages.",
+            "Facilitated smooth operations with proficient data entry and "
+            "document management across projects.",
+            "Elevated the client experience with timely support over phone, "
+            "email and live chat.",
+        ],
+        "skills": [
+            "Customer Support",
+            "Live Chat & Email",
+            "Calendar Management",
+            "Data Entry",
+        ],
+    },
+    {
+        "role": "Host Manager",
+        "company": "International Islamic University, IIU",
+        "company_url": "",
+        "location": "Islamabad, Pakistan",
+        "start": "Sep 2014",
+        "end": "Jan 2017",
+        "employment_type": "",
+        "summary": "Editorial and broadcast interviewing for the university's magazines and radio.",
+        "achievements": [
+            "Conducted interviews with staff, designates and other "
+            "concerned persons for articles published in the university's "
+            "magazines.",
+            "Conducted interviews for the university's radio programmes.",
+        ],
+        "skills": ["Interviewing", "Editorial", "Radio Production"],
+    },
+    {
+        "role": "Press Intern",
+        "company": "Nawa-i-Waqt & The Nation",
+        "company_url": "",
+        "location": "Islamabad, Pakistan",
+        "start": "Jun 2016",
+        "end": "Aug 2016",
+        "employment_type": "Internship",
+        "summary": "Press and media outreach for two national newspapers.",
+        "achievements": [
+            "Drafted press releases and media advisories to enhance media "
+            "outreach.",
+            "Created content for social media channels that complemented "
+            "traditional press efforts, amplifying message reach.",
+            "Assisted with organising press conferences, resulting in "
+            "successful media coverage.",
+            "Maintained confidentiality and discretion when handling "
+            "sensitive client information.",
+        ],
+        "skills": [
+            "Press Releases",
+            "Media Outreach",
+            "Social Media Content",
+            "Press Conferences",
+        ],
+    },
 ]
 
 # ---------------------------------------------------------------------------
@@ -170,6 +265,8 @@ SKILL_GROUPS = [
         "skills": [
             "Technical Issue Investigation & Cross-functional Collaboration",
             "Cross-functional Stakeholder Communication",
+            "Customer Relationship Management",
+            "Customer Feedback & Complaint Management",
         ],
     },
 ]
@@ -234,15 +331,17 @@ EDUCATION = [
         "location": "Islamabad, Pakistan",
         "start": "Feb 2013",
         "end": "Jan 2017",
-        "detail": "Grade: A — Gold Medalist",
+        "detail": "Grade: A — Degree awarded with Gold Medal. Merit Scholarship, 2015 and 2016.",
     },
 ]
 
 # TODO: add any certifications, e.g. Customer.io or HubSpot credentials.
 CERTIFICATIONS = []
 
-# TODO: add languages and levels, e.g. {"name": "Urdu", "level": "Native"}.
-LANGUAGES = []
+LANGUAGES = [
+    {"name": "English", "level": "Full Professional"},
+    {"name": "Urdu", "level": "Native or Bilingual"},
+]
 
 TESTIMONIALS = []
 
