@@ -61,7 +61,10 @@ No `migrate` step — the project has no database.
 
 Go to <https://vercel.com/new>, pick the repository, and press **Deploy**.
 Vercel detects `vercel.json` and needs no framework preset, no build command and
-no output directory — leave all of those blank.
+no output directory — leave all of those blank. Every request is routed to
+`config/wsgi.py`; `application` there normalises `PATH_INFO` first, so the site
+root resolves even when a host hands the function its own rewrite destination
+instead of the visitor's URL.
 
 ### 3. Add the environment variables
 
@@ -131,8 +134,7 @@ portfolio/
 static/
   css/site.css       the full design system
   js/site.js         scroll reveal, nav, mobile menu, word rotator
-api/index.py         Vercel serverless entrypoint
-vercel.json          routes every request to that entrypoint
+vercel.json          routes every request to config/wsgi.py
 ```
 
 ### Routes
