@@ -12,14 +12,12 @@ STATUS
 
   Optional additions, marked TODO below:
     * earlier roles, certifications, languages
-    * a profile photo at static/img/profile.jpg
     * stat tiles and the "open to opportunities" badge, both off by default
 
 Sections disappear by themselves when left empty, so the site never shows a
 half-finished block. PROJECTS = [] removes the Work section and its nav link.
 
-Optional files:
-  static/img/profile.jpg    profile photo (a monogram shows if absent)
+Optional file:
   static/files/resume.pdf   CV, then set PROFILE["resume_file"] below
 =============================================================================
 """
@@ -46,7 +44,6 @@ PROFILE = {
         "Growth ops",
         "Customer.io",
     ],
-    "photo": "img/profile.jpg",
     "resume_file": "",  # e.g. "files/resume.pdf"
 }
 

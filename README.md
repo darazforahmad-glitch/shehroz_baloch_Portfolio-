@@ -25,7 +25,6 @@ Optional extras:
 
 | What | Where to put it |
 |---|---|
-| Profile photo | `static/img/profile.jpg` (a lettered monogram shows if absent) |
 | CV / résumé PDF | `static/files/resume.pdf`, then set `resume_file` in `content.py` |
 
 Sections disappear on their own when you empty them — set `PROJECTS = []` and the

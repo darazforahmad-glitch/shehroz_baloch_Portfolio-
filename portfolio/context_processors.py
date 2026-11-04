@@ -8,7 +8,6 @@ def site_context(request):
     profile = content.PROFILE
     contact = content.CONTACT
 
-    photo = profile.get("photo", "")
     resume_file = profile.get("resume_file", "")
 
     # Only advertise the social links that have actually been filled in.
@@ -52,8 +51,6 @@ def site_context(request):
         "testimonials": content.TESTIMONIALS,
         "social_links": social_links,
         "nav_items": nav_items,
-        "has_photo": static_exists(photo),
-        "photo_path": photo,
         "has_resume": static_exists(resume_file),
         "resume_path": resume_file,
         "monogram": initials(profile.get("name", "")),

@@ -55,6 +55,17 @@
         {% endif %}
       </ul>
 
+      {% if stats %}
+      <ul class="statrow reveal" style="--d:400ms">
+        {% for stat in stats %}
+        <li class="stat">
+          <span class="stat__value">{{ stat.value }}</span>
+          <span class="stat__label">{{ stat.label }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
       {% if social_links %}
       <ul class="hero__social reveal" style="--d:420ms">
         {% for link in social_links %}
@@ -68,27 +79,6 @@
       {% endif %}
     </div>
 
-    <div class="hero__aside reveal" style="--d:220ms">
-      <div class="portrait">
-        <div class="portrait__ring" aria-hidden="true"></div>
-        {% if has_photo %}
-          <img class="portrait__img" src="{% static photo_path %}" alt="Portrait of {{ profile.name }}" width="420" height="500" fetchpriority="high">
-        {% else %}
-          <div class="portrait__mono" role="img" aria-label="{{ profile.name }}">{{ monogram }}</div>
-        {% endif %}
-      </div>
-
-      {% if stats %}
-      <ul class="statrow">
-        {% for stat in stats %}
-        <li class="stat">
-          <span class="stat__value">{{ stat.value }}</span>
-          <span class="stat__label">{{ stat.label }}</span>
-        </li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-    </div>
   </div>
 
   <a class="hero__scroll" href="#about" aria-label="Scroll to about section">
