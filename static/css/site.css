@@ -621,6 +621,11 @@ h1, h2, h3, h4 {
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 18px;
 }
+/* Two up on desktop: the capability names are long, and an even 2x2 beats
+   a three-wide row with one card stranded underneath. */
+@media (min-width: 900px) {
+  .skillgrid { grid-template-columns: repeat(2, 1fr); }
+}
 .card--skill:hover {
   transform: translateY(-4px);
   border-color: var(--line-strong);

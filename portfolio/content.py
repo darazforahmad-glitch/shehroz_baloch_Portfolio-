@@ -3,24 +3,25 @@
  THE ONLY FILE YOU NEED TO EDIT
 =============================================================================
 
-Every word, link, job, skill and project on the website comes from this file.
-There is no database and no admin panel -- change a value here, reload the
-page, and the site updates.
+Every word on the website comes from this file. There is no database and no
+admin panel -- change a value here, reload the page, and the site updates.
 
-!! IMPORTANT !!
-The values below are PLACEHOLDERS. The LinkedIn profile could not be read
-automatically (LinkedIn blocks automated access), so nothing here is real
-profile data. Replace anything wrapped in <angle brackets> or marked TODO
-with the real details before sharing the site.
+STATUS
+  Filled in: name, headline, location, the Cloaked role and what you did
+  there, skills, selected work, and your degree.
 
-Quick start:
-  1. PROFILE  -- name, headline, location, contact links
-  2. ABOUT    -- the summary paragraphs and the stat tiles
-  3. EXPERIENCE / EDUCATION / CERTIFICATIONS
-  4. SKILLS   -- grouped skill chips
-  5. PROJECTS -- featured work cards
-  6. Drop a photo at  static/img/profile.jpg  and a CV at
-     static/files/resume.pdf  (both optional; the site works without them)
+  Still needed -- search this file for "TODO":
+    * contact email
+    * start date at Cloaked  (EXPERIENCE -> "start")
+    * graduation years       (EDUCATION)
+    * any previous roles, certifications, languages
+
+Sections disappear by themselves when left empty, so the site never shows a
+half-finished block. PROJECTS = [] removes the Work section and its nav link.
+
+Optional files:
+  static/img/profile.jpg    profile photo (a monogram shows if absent)
+  static/files/resume.pdf   CV, then set PROFILE["resume_file"] below
 =============================================================================
 """
 
@@ -29,35 +30,34 @@ Quick start:
 # ---------------------------------------------------------------------------
 PROFILE = {
     "name": "Shehroz Baloch",
-    # Shown under the name in the hero. Keep it short and specific.
-    "headline": "<Your professional headline, e.g. Business Development Manager>",
-    # One punchy line used in the hero paragraph and as the meta description.
+    "headline": "Lifecycle, Support & Growth Ops @ Cloaked",
     "tagline": (
-        "<One or two sentences describing what you do and the value you bring. "
-        "This is the first thing a visitor reads, so make it count.>"
+        "I work across lifecycle marketing, customer support and growth "
+        "operations — building the campaigns, segments and reporting that "
+        "connect a product to the people actually using it."
     ),
-    "location": "<City, Country>",
-    "availability": "Open to new opportunities",  # set to "" to hide the badge
-    # Rotating words in the hero typing animation. Keep 2-5 short items.
+    "location": "Lahore, Punjab, Pakistan",
+    # TODO: set to "Open to new opportunities" if that is true for you.
+    # Left empty for now so the site does not claim it on your behalf.
+    "availability": "",
+    # Rotating words in the hero.
     "focus_areas": [
-        "<Focus area one>",
-        "<Focus area two>",
-        "<Focus area three>",
+        "Lifecycle marketing",
+        "CRM operations",
+        "Growth ops",
+        "Customer.io",
     ],
-    # Optional: static/img/profile.jpg -- leave as-is; a lettered monogram is
-    # shown automatically if the file is missing.
     "photo": "img/profile.jpg",
-    # Optional: static/files/resume.pdf -- the Resume button hides if unset.
     "resume_file": "",  # e.g. "files/resume.pdf"
 }
 
 CONTACT = {
-    "email": "<you@example.com>",
-    "phone": "",  # optional, e.g. "+92 300 0000000"
+    "email": "<TODO: your email address>",
+    "phone": "",
     "linkedin": "https://www.linkedin.com/in/shehroz-baloch-92910141b/",
-    "github": "",     # optional
-    "twitter": "",    # optional
-    "website": "",    # optional
+    "github": "",
+    "twitter": "",
+    "website": "",
 }
 
 # ---------------------------------------------------------------------------
@@ -65,124 +65,165 @@ CONTACT = {
 # ---------------------------------------------------------------------------
 ABOUT = {
     "heading": "About me",
-    "lead": "<A single strong opening sentence about who you are professionally.>",
+    "lead": (
+        "I work at the intersection of lifecycle marketing, customer support "
+        "and growth operations."
+    ),
     "paragraphs": [
-        "<Paragraph one: your background, the kind of work you do, and the "
-        "industries or teams you have worked with.>",
-        "<Paragraph two: how you work, what you are especially good at, and "
-        "the sort of problems you enjoy solving.>",
+        "At Cloaked I work on lifecycle marketing and operational support — "
+        "building and managing campaigns in Customer.io across email, SMS and "
+        "push, segmenting audiences, and keeping day-to-day CRM operations "
+        "running, with a focus on campaign performance and user engagement.",
+
+        "Much of the work sits between teams. I developed a segment exclusion "
+        "filter to address data sync issues, streamlined backend-triggered "
+        "email workflows into Customer.io, and managed the Referral Gift Card "
+        "program — collaborating cross-functionally to resolve bugs that were "
+        "affecting users.",
+
+        "I lean on A/B testing, holdout pool design and Snowflake data "
+        "integration to measure what campaigns actually do, and on a "
+        "background in Communication and Media Studies for how I approach "
+        "messaging and audience. The through-line is aligning technical "
+        "solutions to organisational goals.",
     ],
-    # Short, factual highlights. Delete any you do not want to show.
     "highlights": [
-        "<A concrete strength or specialism>",
-        "<Another strength>",
-        "<A third strength>",
+        "Lifecycle campaigns across email, SMS and push, built in Customer.io",
+        "Audience segmentation and day-to-day CRM operations",
+        "A/B testing, holdout pool design and campaign performance reporting",
+        "Technical issue investigation alongside engineering and support",
+        "Cross-functional stakeholder communication",
     ],
 }
 
-# Stat tiles in the hero. Use 2-4. Set to [] to hide the row entirely.
-STATS = [
-    {"value": "<N>+", "label": "Years of experience"},
-    {"value": "<N>+", "label": "Projects delivered"},
-    {"value": "<N>+", "label": "Clients served"},
-]
+# TODO: add real figures if you want the stat tiles back, e.g.
+#   {"value": "3+", "label": "Years in lifecycle marketing"}
+# Left empty rather than showing invented numbers.
+STATS = []
 
 # ---------------------------------------------------------------------------
 # 3. EXPERIENCE
 # ---------------------------------------------------------------------------
-# Newest role first. `end` can be "Present".
 EXPERIENCE = [
     {
-        "role": "<Job title>",
-        "company": "<Company name>",
-        "company_url": "",
-        "location": "<City, Country>",
-        "start": "<Mon YYYY>",
+        "role": "Lifecycle & Support Ops",
+        "company": "Cloaked",
+        "company_url": "",  # optional: link to cloaked.com
+        "location": "Lahore, Punjab, Pakistan · Remote",
+        "start": "Mar 2025",
         "end": "Present",
         "employment_type": "Full-time",
-        "summary": "<One sentence on the scope of the role.>",
+        "summary": (
+            "Enhancing lifecycle marketing and operational support, with "
+            "improvements in campaign performance and user engagement."
+        ),
         "achievements": [
-            "<An achievement with a number in it where you can.>",
-            "<A responsibility that shows the scale you operate at.>",
-            "<Something you improved, built or led.>",
+            "Developed a segment exclusion filter to resolve data sync "
+            "issues, ensuring accurate user messaging.",
+            "Led the migration of backend-triggered emails into Customer.io, "
+            "streamlining communication workflows.",
+            "Managed the Referral Gift Card program, coordinating "
+            "cross-functional teams to resolve user-impacting bugs.",
         ],
-        "skills": ["<Skill>", "<Skill>", "<Skill>"],
-    },
-    {
-        "role": "<Previous job title>",
-        "company": "<Previous company>",
-        "company_url": "",
-        "location": "<City, Country>",
-        "start": "<Mon YYYY>",
-        "end": "<Mon YYYY>",
-        "employment_type": "Full-time",
-        "summary": "<One sentence on the scope of the role.>",
-        "achievements": [
-            "<An achievement.>",
-            "<Another achievement.>",
+        "skills": [
+            "Lifecycle Marketing (Email, SMS & Push)",
+            "Customer.io (CIO)",
+            "A/B Testing & Holdout Pool Design",
+            "Cross-functional Stakeholder Communication",
+            "Audience Segmentation",
+            "Snowflake",
         ],
-        "skills": ["<Skill>", "<Skill>"],
     },
+    # TODO: add earlier roles by copying the block above. Newest first.
 ]
 
 # ---------------------------------------------------------------------------
-# 4. SKILLS
+# 4. SKILLS  (the five listed on your LinkedIn profile)
 # ---------------------------------------------------------------------------
-# Grouped so the section reads as a capability map rather than a word cloud.
 SKILL_GROUPS = [
     {
-        "title": "<Group one, e.g. Core expertise>",
-        "icon": "spark",  # spark | layers | chart | users | tools | globe
-        "skills": ["<Skill>", "<Skill>", "<Skill>", "<Skill>"],
+        "title": "Lifecycle & Campaigns",
+        "icon": "spark",
+        "skills": [
+            "Lifecycle Marketing (Email, SMS & Push)",
+            "Customer.io (CIO) Campaign Management",
+            "Backend-triggered Email Workflows",
+        ],
     },
     {
-        "title": "<Group two, e.g. Tools & platforms>",
-        "icon": "tools",
-        "skills": ["<Skill>", "<Skill>", "<Skill>", "<Skill>"],
-    },
-    {
-        "title": "<Group three, e.g. Ways of working>",
+        "title": "Audience & CRM Operations",
         "icon": "users",
-        "skills": ["<Skill>", "<Skill>", "<Skill>"],
+        "skills": [
+            "Audience Segmentation & CRM Operations",
+            "Holdout Pool Design",
+            "Segment Exclusion Filtering",
+        ],
+    },
+    {
+        "title": "Analytics & Experimentation",
+        "icon": "chart",
+        "skills": [
+            "Campaign Performance Reporting & Data Analysis",
+            "A/B Testing",
+            "Snowflake Data Integration",
+        ],
+    },
+    {
+        "title": "Support & Collaboration",
+        "icon": "tools",
+        "skills": [
+            "Technical Issue Investigation & Cross-functional Collaboration",
+            "Cross-functional Stakeholder Communication",
+        ],
     },
 ]
 
 # ---------------------------------------------------------------------------
 # 5. PROJECTS / SELECTED WORK
 # ---------------------------------------------------------------------------
-# Set to [] to remove the whole section from the page and the navigation.
+# Drawn from the work at Cloaked. TODO: add results/numbers where you have
+# them -- a figure in the description is what makes these land.
 PROJECTS = [
     {
-        "title": "<Project name>",
-        "category": "<Category, e.g. Client engagement>",
-        "period": "<YYYY>",
+        "title": "Segment Exclusion Filter",
+        "category": "CRM Operations",
+        "period": "",
         "description": (
-            "<What the project was, what you did on it, and what the outcome "
-            "was. Two or three sentences is plenty.>"
+            "Built a segment exclusion filter to address data sync issues "
+            "that were affecting campaign targeting, so audiences resolved "
+            "correctly before a send went out."
         ),
-        "tags": ["<Tag>", "<Tag>"],
-        "url": "",          # optional link
-        "url_label": "View project",
-        "featured": True,   # featured cards get the wider layout
+        "tags": ["Audience Segmentation", "Data Sync", "Customer.io"],
+        "url": "",
+        "url_label": "",
+        "featured": True,
     },
     {
-        "title": "<Second project>",
-        "category": "<Category>",
-        "period": "<YYYY>",
-        "description": "<Short description of the work and its result.>",
-        "tags": ["<Tag>", "<Tag>"],
+        "title": "Customer.io Workflow Consolidation",
+        "category": "Lifecycle Engineering",
+        "period": "",
+        "description": (
+            "Streamlined backend-triggered email workflows into Customer.io, "
+            "bringing delivery into one platform and making lifecycle "
+            "messaging easier to manage and measure."
+        ),
+        "tags": ["Customer.io", "Email Automation"],
         "url": "",
-        "url_label": "View project",
+        "url_label": "",
         "featured": False,
     },
     {
-        "title": "<Third project>",
-        "category": "<Category>",
-        "period": "<YYYY>",
-        "description": "<Short description of the work and its result.>",
-        "tags": ["<Tag>"],
+        "title": "Referral Gift Card Program",
+        "category": "Growth",
+        "period": "",
+        "description": (
+            "Managed the Referral Gift Card program end to end, working "
+            "across engineering, support and growth to investigate and "
+            "resolve user-impacting bugs."
+        ),
+        "tags": ["Referral", "Cross-functional", "Support"],
         "url": "",
-        "url_label": "View project",
+        "url_label": "",
         "featured": False,
     },
 ]
@@ -192,44 +233,27 @@ PROJECTS = [
 # ---------------------------------------------------------------------------
 EDUCATION = [
     {
-        "degree": "<Degree, e.g. BBA (Hons) Marketing>",
-        "institution": "<University name>",
-        "location": "<City, Country>",
-        "start": "<YYYY>",
-        "end": "<YYYY>",
-        "detail": "<Optional: honours, specialisation, notable coursework.>",
+        "degree": "BS in Communication and Media Studies",
+        "institution": "International Islamic University, Islamabad",
+        "location": "Islamabad, Pakistan",
+        "start": "<TODO: YYYY>",
+        "end": "<TODO: YYYY>",
+        "detail": "",
     },
 ]
 
-CERTIFICATIONS = [
-    {
-        "name": "<Certification name>",
-        "issuer": "<Issuing organisation>",
-        "year": "<YYYY>",
-        "url": "",
-    },
-]
+# TODO: add any certifications, e.g. Customer.io or HubSpot credentials.
+CERTIFICATIONS = []
 
-LANGUAGES = [
-    {"name": "English", "level": "<Professional / Native / Fluent>"},
-    {"name": "Urdu", "level": "<Native>"},
-]
+# TODO: add languages and levels, e.g. {"name": "Urdu", "level": "Native"}.
+LANGUAGES = []
 
-# Optional social proof. Set to [] to hide the section.
-TESTIMONIALS = [
-    # {
-    #     "quote": "<What a manager, client or colleague said about working with you.>",
-    #     "author": "<Name>",
-    #     "role": "<Title, Company>",
-    # },
-]
+TESTIMONIALS = []
 
 # ---------------------------------------------------------------------------
 # 7. SITE SETTINGS
 # ---------------------------------------------------------------------------
 SITE = {
-    # Used for absolute URLs in meta tags and sitemap.xml. No trailing slash.
-    # Leave "" to have it derived from the incoming request.
     "base_url": "",
     "brand": "Shehroz Baloch",
     "nav_cta": "Get in touch",
@@ -239,6 +263,5 @@ SITE = {
         "Have a role, a project or a question in mind? Send a message and "
         "I will get back to you."
     ),
-    # Shown in the <title> after the name.
-    "title_suffix": "Portfolio",
+    "title_suffix": "Lifecycle & Growth Ops",
 }
