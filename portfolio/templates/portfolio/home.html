@@ -66,17 +66,6 @@
       </ul>
       {% endif %}
 
-      {% if social_links %}
-      <ul class="hero__social reveal" style="--d:420ms">
-        {% for link in social_links %}
-        <li>
-          <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ link.name }}">
-            <svg class="icon" aria-hidden="true"><use href="#i-{{ link.icon }}"></use></svg>
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-      {% endif %}
     </div>
 
   </div>
@@ -90,7 +79,6 @@
 <section class="section" id="about">
   <div class="shell">
     <header class="sechead reveal">
-      <p class="sechead__eyebrow">01 — Introduction</p>
       <h2 class="sechead__title">{{ about.heading }}</h2>
     </header>
 
@@ -103,7 +91,7 @@
       <aside class="about__side reveal" style="--d:100ms">
         {% if about.highlights %}
         <div class="card card--soft">
-          <h3 class="card__title">What I bring</h3>
+          <h3 class="card__title">What I Bring</h3>
           <ul class="ticklist">
             {% for item in about.highlights %}
             <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span>{{ item }}</span></li>
@@ -132,7 +120,6 @@
 <section class="section section--alt" id="experience">
   <div class="shell">
     <header class="sechead reveal">
-      <p class="sechead__eyebrow">02 — Career</p>
       <h2 class="sechead__title">Experience</h2>
       <p class="sechead__sub">Roles, responsibilities and the results behind them.</p>
     </header>
@@ -185,8 +172,7 @@
 <section class="section" id="skills">
   <div class="shell">
     <header class="sechead reveal">
-      <p class="sechead__eyebrow">03 — Capabilities</p>
-      <h2 class="sechead__title">Skills &amp; expertise</h2>
+      <h2 class="sechead__title">Skills &amp; Expertise</h2>
     </header>
 
     <div class="skillgrid">
@@ -211,8 +197,7 @@
 <section class="section section--alt" id="work">
   <div class="shell">
     <header class="sechead reveal">
-      <p class="sechead__eyebrow">04 — Portfolio</p>
-      <h2 class="sechead__title">Selected work</h2>
+      <h2 class="sechead__title">Selected Work</h2>
       <p class="sechead__sub">A few projects that show how I work and what I deliver.</p>
     </header>
 
@@ -249,8 +234,7 @@
 <section class="section" id="education">
   <div class="shell">
     <header class="sechead reveal">
-      <p class="sechead__eyebrow">05 — Background</p>
-      <h2 class="sechead__title">Education &amp; certifications</h2>
+      <h2 class="sechead__title">Education &amp; Certifications</h2>
     </header>
 
     <div class="twocol">
@@ -295,8 +279,7 @@
 <section class="section section--alt" id="testimonials">
   <div class="shell">
     <header class="sechead reveal">
-      <p class="sechead__eyebrow">06 — Recommendations</p>
-      <h2 class="sechead__title">What people say</h2>
+      <h2 class="sechead__title">What People Say</h2>
     </header>
     <div class="quotegrid">
       {% for item in testimonials %}
@@ -316,7 +299,6 @@
   <div class="shell">
     <div class="contact">
       <div class="contact__intro reveal">
-        <p class="sechead__eyebrow">07 — Contact</p>
         <h2 class="sechead__title">{{ site.contact_heading }}</h2>
         <p class="contact__blurb">{{ site.contact_blurb }}</p>
 
@@ -341,13 +323,6 @@
           {% endif %}
         </ul>
 
-        {% if social_links %}
-        <ul class="hero__social">
-          {% for link in social_links %}
-          <li><a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ link.name }}"><svg class="icon" aria-hidden="true"><use href="#i-{{ link.icon }}"></use></svg></a></li>
-          {% endfor %}
-        </ul>
-        {% endif %}
       </div>
 
       <div class="contact__formwrap reveal" style="--d:120ms">

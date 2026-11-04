@@ -60,7 +60,7 @@ CONTACT = {
 # 2. ABOUT
 # ---------------------------------------------------------------------------
 ABOUT = {
-    "heading": "About me",
+    "heading": "About Me",
     "lead": (
         "I work at the intersection of lifecycle marketing, customer support "
         "and growth operations."
@@ -353,7 +353,7 @@ SITE = {
     "brand": "Shehroz Baloch",
     "nav_cta": "Get in touch",
     "footer_note": "Designed and built with Django.",
-    "contact_heading": "Let's work together",
+    "contact_heading": "Let's Work Together",
     "contact_blurb": (
         "Have a role, a project or a question in mind? Send a message and "
         "I will get back to you."
