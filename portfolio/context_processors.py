@@ -26,6 +26,12 @@ def site_context(request):
         if link["url"]
     ]
 
+    # "https://www.linkedin.com/in/shehroz-baloch-92910141b/" -> the slug,
+    # so the contact row shows something readable rather than a long URL.
+    linkedin_handle = ""
+    if linkedin := contact.get("linkedin", ""):
+        linkedin_handle = linkedin.rstrip("/").rsplit("/", 1)[-1]
+
     nav_items = [
         {"label": "About", "anchor": "about"},
         {"label": "Experience", "anchor": "experience"},
@@ -50,6 +56,7 @@ def site_context(request):
         "languages": content.LANGUAGES,
         "testimonials": content.TESTIMONIALS,
         "social_links": social_links,
+        "linkedin_handle": linkedin_handle,
         "nav_items": nav_items,
         "has_resume": static_exists(resume_file),
         "resume_path": resume_file,

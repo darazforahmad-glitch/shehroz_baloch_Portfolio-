@@ -321,6 +321,15 @@
             <span><span class="contact__k">Location</span>{{ profile.location }}</span>
           </li>
           {% endif %}
+          {% if contact.linkedin %}
+          <li>
+            <span class="contact__ico" aria-hidden="true"><svg class="icon"><use href="#i-linkedin"></use></svg></span>
+            <span>
+              <span class="contact__k">LinkedIn</span>
+              <a href="{{ contact.linkedin }}" target="_blank" rel="noopener noreferrer">{{ linkedin_handle|default:"View profile" }}</a>
+            </span>
+          </li>
+          {% endif %}
         </ul>
 
       </div>
